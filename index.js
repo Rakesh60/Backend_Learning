@@ -1,30 +1,62 @@
-const http =require('http');
-
 const fs=require('fs')
 
-const index=fs.readFileSync('index.html','utf-8')
+
+// const index=fs.readFileSync('index.html','utf-8')
 const data=fs.readFileSync('data.json','utf-8')
+ const products=JSON.parse(data)
+
+const express =require('express');
+//const { type } = require('os');
+const server=express();
+// server.get('/',(req,res)=>{
+//     res.send('<h1>Hello World</h1>')
+//     res.sendFile('E:/Backend_Learning/index.html')
+//    res.json(products)
+//    res.sendStatus(404);
+//    res.status(202).send('<h1>Own Status</h1>')
 
 
-const server=http.createServer((req,res)=>{
-    switch(req.url){
-        case '/': res.setHeader('Content-Type','text/html');
-        res.end(index);
-        break;
-        case '/api':res.setHeader('Content-Type','application/json')
-        res.end(data);
-        break;
-        default:
-            res.writeHead(404,'Page Not Found');
-            res.end();
+// })
+
+// server.get('/demo',(req,res)=>{
+
+// })
 
 
+// server.use((req,res,next)=>{
+    
+//     console.log(req.method,req.ip,req.hostname,req.get('User-Agent'))
+//     next();
+// })
+const auth=(req,res,next)=>{
+    if (req.query.password=='123') {
+        next();
+        
+    } else {
+        res.send(401);
     }
-    // console.log(req.url)
-    // console.log('Server Started')
-    // res.setHeader('Dummy','DummyValue')
-    // res.setHeader('Content-Type','text/html')
-   
+}
+
+server.get('/',auth,(req,res)=>{
+    res.json({type:'GET'})
+    //console.log(req.header)
+})
+server.put('/',auth,(req,res)=>{
+    res.json({type:'PUT'})
+})
+server.post('/',(req,res)=>{
+    res.json({type:'POST'})
+})
+server.delete('/',(req,res)=>{
+    res.json({type:'DELETE'})
+})
+server.patch('/',(req,res)=>{
+    res.json({type:'PATCH'})
 })
 
-server.listen(8080);
+
+
+
+server.listen(8000,()=>{
+    console.log('Server Started')
+})
