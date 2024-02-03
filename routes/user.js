@@ -3,11 +3,11 @@ const userController = require("../controller/user");
 const router = express.Router();
 
 router
-  .get("/", userController.getProducts)
-  .post("/", userController.createProduct)
-  .get("/:id", userController.getProduct)
-  .put("/:id", userController.updateProduct)
-  .delete("/:id", userController.deleteProduct)
-  .patch("/:id", userController.replaceProduct);
+  .get("/", userController.getUsers)
+  .post("/", userController.createUser)
+  .get("/:id", userController.getUser)
+  .put("/:id", userController.updateUser)
+  .delete("/:id", userController.deleteUser)
+  .patch("/:id", userController.replaceUser);
 
 exports.router = router;
