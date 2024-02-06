@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+const cors=require('cors');
 
 const server = express();
 const productRouter = require("./routes/product");
@@ -23,8 +24,9 @@ async function main() {
 
 
 //bodyParser
+server.use(cors())
 server.use(express.json());
-//server.use(morgan("default"));
+server.use(morgan("default"));
 server.use(express.static(process.env.PUBLIC_DIR));
 server.use("/products", productRouter.router);
 server.use("/user", userRouter.router);
