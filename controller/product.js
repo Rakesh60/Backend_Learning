@@ -4,7 +4,6 @@ const Product = model.Product;
 
 exports.createProduct = async (req, res) => {
   const product = new Product(req.body);
-
   try {
     const savedProduct = await product.save();
     console.log(savedProduct);

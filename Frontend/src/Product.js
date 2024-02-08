@@ -21,7 +21,7 @@ const Product = ({
                     <span className="discount">-{discountPercentage}%</span>
                     <span className="wishlist">
                       <i
-                        className="fa fa-heart-o"
+                        className="fa fa-trash"
                         onClick={() => handleClick(_id)}
                       />
                     </span>
