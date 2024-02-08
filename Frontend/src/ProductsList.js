@@ -8,13 +8,13 @@ const ProductList = () => {
 
   //CRUD-read
   const getProducts = async () => {
-    const res = await axios.get("http://localhost:8080/products");
+    const res = await axios.get("/products");
     console.log(res.data);
     setProducts(res.data);
   };
 
   const handleClick = async (id) => {
-    const res = await axios.delete(`http://localhost:8080/products/${id}`);
+    const res = await axios.delete(`/products/${id}`);
     console.log(res.data);
     if(res.data._id){
         setProducts(products.filter(p=>p._id!==res.data._id))
