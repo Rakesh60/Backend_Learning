@@ -12,10 +12,11 @@ const userSchema = new Schema({
       validator: function (v) {
         return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(v);
       },
-      message: (prop) => `${prop.value}is not a valid email`,
+      message: (prop) => `${prop.value} is not a valid email`,
     },
   },
   password: { type: String, minLength: 6, required: true },
   token: String,
 });
 exports.User = mongoose.model("User", userSchema);
+
