@@ -8,6 +8,7 @@ const path = require("path");
 const server = express();
 const productRouter = require("./routes/product");
 const userRouter = require("./routes/user");
+const noteRouter=require('./routes/notes')
 console.log(process.env.DB_PASSWORD);
 
 //*db connection
@@ -25,6 +26,7 @@ server.use(morgan("default"));
 server.use(express.static(path.resolve(__dirname, process.env.PUBLIC_DIR)));
 server.use("/products", productRouter.router);
 server.use("/users", userRouter.router);
+server.use("/notes",noteRouter.noteRouter);
 server.use("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "build", "index.html"));
 });
