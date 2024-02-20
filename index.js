@@ -36,5 +36,5 @@ server.use('*',(req,res)=>{
 })
 
 server.listen(process.env.PORT, () => {
-  console.log("server started");
+  console.log(`http://localhost:${process.env.PORT}`);
 });
