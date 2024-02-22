@@ -42,7 +42,7 @@ exports.deleteNote = async (req, res) => {
       // If the note with the provided ID is not found, return a 404 Not Found error
       return res.status(404).json({ error: "Note not found" });
     }
-    res.json({ message: "Note deleted successfully" });
+    res.json({ message: `${deletedNote.title} Note deleted successfully` });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err });
